@@ -15,3 +15,15 @@
     </tr>
   </table>
 </div>
+
+<label for="filter">Choose a filter to apply:</label>
+<br />
+<select name="department" id="department" (change)="onChange('department',$event)">
+  <option value="value" selected>department Name</option>
+  <option [value]="data" *ngFor="let data of department">{{ data }}</option>
+</select>
+<br />
+<select name="manager" id="manager" (change)="onChange('manager',$event)">
+  <option value="value" selected>manager Name</option>
+  <option [value]="data" *ngFor="let data of manager">{{ data }}</option>
+</select>

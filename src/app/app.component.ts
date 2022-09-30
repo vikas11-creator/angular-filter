@@ -10,8 +10,6 @@ import {
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  name = 'Angular';
-
   constructor(public cdr: ChangeDetectorRef) {}
 
   array: any[] = [
@@ -22,66 +20,63 @@ export class AppComponent {
       city: 'mumbai',
     },
     {
-      id: 1,
+      id: 2,
       department: 'zoology',
       manager: 'male',
       city: 'patna',
     },
     {
-      id: 1,
+      id: 3,
       department: 'it',
       manager: 'female',
       city: 'goa',
     },
     {
-      id: 1,
+      id: 4,
       department: 'it',
       manager: 'male',
       city: 'banglore',
     },
     {
-      id: 1,
+      id: 5,
       department: 'it',
       manager: 'female',
       city: 'bhopal',
     },
     {
-      id: 1,
+      id: 6,
       department: 'zoology',
       manager: 'male',
       city: 'delhi',
     },
     {
-      id: 1,
+      id: 7,
       department: 'zoology',
       manager: 'male',
       city: 'mumbai',
     },
   ];
-  newArr: object[];
   department: string[] = ['it', 'zoology'];
   manager: string[] = ['male', 'female'];
+  isfilter: boolean = false;
+  filteredArr: any[];
 
   onChange(key, event) {
-    //console.log(event.target.value);
-    debugger;
-    switch (key) {
-      case 'department':
-        this.newArr = this.array.filter((data) => {
-          return data.department === event.target.value;
+    let copyArr = this.array;
+    this.array = [];
+    let filterString = key;
+    for (let i = 0; i < copyArr.length; i++) {
+      if (!this.isfilter) {
+        this.array = copyArr.filter((data) => {
+          this.isfilter = true;
+          return data[filterString] === event.target.value;
         });
-        console.log('67', this.newArr);
-        this.array === this.newArr;
-        this.cdr.detectChanges();
-        break;
-      case 'manager':
-        this.newArr = this.array.filter((data) => {
-          return (data.manager = event.target.value);
+        this.filteredArr = this.array;
+      } else {
+        this.array = this.filteredArr.filter((data) => {
+          return data[filterString] === event.target.value;
         });
-        console.log('73', this.newArr);
-        this.array === this.newArr;
-        break;
+      }
     }
-    //console.log(this.array);
   }
 }

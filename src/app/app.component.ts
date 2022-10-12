@@ -3,6 +3,7 @@ import {
   ChangeDetectorRef,
   Component,
 } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'my-app',
@@ -10,7 +11,17 @@ import {
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  constructor(public cdr: ChangeDetectorRef,) {}
+  constructor(
+    public cdr: ChangeDetectorRef,
+    private spinner: NgxSpinnerService
+  ) {
+    this.spinner.show();
+
+    setTimeout(() => {
+      /** spinner ends after 5 seconds */
+      this.spinner.hide();
+    }, 5000);
+  }
 
   array: any[] = [
     {
@@ -81,11 +92,16 @@ export class AppComponent {
   }
 
   searchArray(val) {
+    this.spinner.show();
     //let copyArr: any[] = this.array;
     let value = val.value;
-
+    setTimeout(() => {
+      /** spinner ends after 5 seconds */
+      this.spinner.hide();
+    }, 5000);
     this.array = this.getArray(this.array, value);
     console.log('array', this.array);
+
     // if (value === '') {
     //   console.log('array',val.value);
     //   return this.array;

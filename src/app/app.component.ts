@@ -10,7 +10,7 @@ import {
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  constructor(public cdr: ChangeDetectorRef) {}
+  constructor(public cdr: ChangeDetectorRef,) {}
 
   array: any[] = [
     {
@@ -81,21 +81,43 @@ export class AppComponent {
   }
 
   searchArray(val) {
-    let copyArr: any[] = this.array;
+    //let copyArr: any[] = this.array;
     let value = val.value;
-    if (value === '') {
-      console.log('array',val.value);
-      return this.array;
-    }
-    this.array = [];
-    for (let i = 0; i < copyArr.length; i++) {
-      if (
-        copyArr[i].department.toLocaleLowerCase().includes(value) ||
-        copyArr[i].manager.toLocaleLowerCase().includes(value) ||
-        copyArr[i].city.toLocaleLowerCase().includes(value)
-      ) {
-        this.array.push(copyArr[i]);
-      }
-    }
+
+    this.array = this.getArray(this.array, value);
+    console.log('array', this.array);
+    // if (value === '') {
+    //   console.log('array',val.value);
+    //   return this.array;
+    // }
+    // this.array = [];
+    // for (let i = 0; i < copyArr.length; i++) {
+    //   if (
+    //     copyArr[i].department.toLocaleLowerCase().includes(value) ||
+    //     copyArr[i].manager.toLocaleLowerCase().includes(value) ||
+    //     copyArr[i].city.toLocaleLowerCase().includes(value)
+    //   ) {
+    //     this.array.push(copyArr[i]);
+    //   }
+    // }
+
+    //     if (
+    //   copyArr[i].department.toLocaleLowerCase().includes(value) ||
+    //   copyArr[i].manager.toLocaleLowerCase().includes(value) ||
+    //   copyArr[i].city.toLocaleLowerCase().includes(value)
+    // ) {
+    //         this.array.push(copyArr[i]);
+    // }
+
+    //})
+  }
+  getArray(arr, val) {
+    return arr.filter((obj) => {
+      return (
+        obj.department.toLocaleLowerCase().includes(val) ||
+        obj.manager.toLocaleLowerCase().includes(val) ||
+        obj.city.toLocaleLowerCase().includes(val)
+      );
+    });
   }
 }

@@ -1,5 +1,10 @@
-<input type="text" class="input input-md" placeholder="filter data" />
-<button type="button" #val (click)="searchArray()">Search</button>
+<input
+  type="text"
+  #val
+  (keyup)="searchArray(val)"
+  class="input input-md"
+  placeholder="filter data"
+/>
 <div>
   <table>
     <tr>

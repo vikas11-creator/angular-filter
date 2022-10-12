@@ -20,7 +20,7 @@ export class AppComponent {
     setTimeout(() => {
       /** spinner ends after 5 seconds */
       this.spinner.hide();
-    }, 5000);
+    }, 2000);
   }
 
   array: any[] = [
@@ -93,15 +93,15 @@ export class AppComponent {
 
   searchArray(val) {
     this.spinner.show();
-    //let copyArr: any[] = this.array;
     let value = val.value;
     setTimeout(() => {
-      /** spinner ends after 5 seconds */
       this.spinner.hide();
-    }, 5000);
+    }, 2000);
+    //FILTER METHOD RETURN STATEMENT
     this.array = this.getArray(this.array, value);
-    console.log('array', this.array);
 
+    //FILTER METHOD WITH EXTRA COPY VARIABLE
+    //let copyArr: any[] = this.array;
     // if (value === '') {
     //   console.log('array',val.value);
     //   return this.array;
@@ -116,18 +116,12 @@ export class AppComponent {
     //     this.array.push(copyArr[i]);
     //   }
     // }
-
-    //     if (
-    //   copyArr[i].department.toLocaleLowerCase().includes(value) ||
-    //   copyArr[i].manager.toLocaleLowerCase().includes(value) ||
-    //   copyArr[i].city.toLocaleLowerCase().includes(value)
-    // ) {
-    //         this.array.push(copyArr[i]);
-    // }
-
     //})
   }
   getArray(arr, val) {
+    if (val == '') {
+      return arr;
+    }
     return arr.filter((obj) => {
       return (
         obj.department.toLocaleLowerCase().includes(val) ||

@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HelloComponent } from './hello.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+//NgxSpinnerModule requires BrowserAnimationsModule so put this also
 @NgModule({
   imports: [
     BrowserModule,

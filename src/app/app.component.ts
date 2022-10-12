@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  OnInit,
 } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 
@@ -10,7 +11,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  arrayCopy1:any[] = [];
   constructor(
     public cdr: ChangeDetectorRef,
     private spinner: NgxSpinnerService
@@ -22,7 +24,8 @@ export class AppComponent {
       this.spinner.hide();
     }, 2000);
   }
-
+ngOnInit(){
+}
   array: any[] = [
     {
       id: 1,
@@ -67,6 +70,7 @@ export class AppComponent {
       city: 'mumbai',
     },
   ];
+
   department: string[] = ['it', 'zoology'];
   manager: string[] = ['male', 'female'];
   isfilter: boolean = false;
@@ -120,7 +124,8 @@ export class AppComponent {
   }
   getArray(arr, val) {
     if (val == '') {
-      return arr;
+      console.log(this.copyArr)
+      return this.copyArr;
     }
     return arr.filter((obj) => {
       return (

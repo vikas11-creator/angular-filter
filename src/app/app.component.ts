@@ -79,4 +79,19 @@ export class AppComponent {
       }
     }
   }
+
+  searchArray(val) {
+    let copyArr: any[] = this.array;
+    let value = val.value;
+    this.array = [];
+    for (let i = 0; i < copyArr.length; i++) {
+      if (
+        copyArr[i].department.toLocaleLowerCase().includes(value) ||
+        copyArr[i].manager.toLocaleLowerCase().includes(value) ||
+        copyArr[i].city.toLocaleLowerCase().includes(value)
+      ) {
+        this.array.push(copyArr[i]);
+      }
+    }
+  }
 }

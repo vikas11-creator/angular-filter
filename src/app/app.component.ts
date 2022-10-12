@@ -83,6 +83,10 @@ export class AppComponent {
   searchArray(val) {
     let copyArr: any[] = this.array;
     let value = val.value;
+    if (value === '') {
+      console.log('array',val.value);
+      return this.array;
+    }
     this.array = [];
     for (let i = 0; i < copyArr.length; i++) {
       if (
